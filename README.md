@@ -1,2 +1,3 @@
 # passgen
-Ansible playbook for generating random passwords for inventory hosts.
+
+Ansible playbook for changing inventory hosts password with random characters.
