@@ -1,0 +1,11 @@
+---
+- name: Change host passwords with random generated passwords
+  hosts:
+    - knodes
+  become: true
+  gather_facts: true
+  vars_files:
+    - group_vars/all.yml
+  remote_user: root
+  roles:
+    - { role: passgen }

@@ -1,0 +1,32 @@
+---
+- name: Generate a unique password for each host
+  ansible.builtin.set_fact:
+    user_password: "{{ lookup('ansible.builtin.password', '/dev/null length=' + password_length | string + ' chars=' + password_chars) }}"
+
+- name: Generate a password hash for each host
+  ansible.builtin.set_fact:
+    password_hash: "{{ user_password | ansible.builtin.password_hash(hashtype='sha512') }}"
+
+- name: Display generated and hashed password (for debugging purposes, remove this in production)
+  ansible.builtin.debug:
+    msg: "{{ inventory_hostname }}: {{ user_password }} and {{ password_hash }}"
+
+- name: Change user password
+  ansible.builtin.user:
+    name: "{{ username }}"
+    password: "{{ password_hash }}"
+    update_password: always
+
+- name: Add password entry to temporary file
+  delegate_to: localhost
+  become: false
+  ansible.builtin.lineinfile:
+    path: /tmp/passwords.tmp
+    create: true
+    line: "{{ inventory_hostname }}: {{ user_password }}"
+
+- name: Move temporary file to final location (overwrite if exists)
+  delegate_to: localhost
+  become: false
+  ansible.builtin.command: mv /tmp/passwords.tmp {{ password_file }}
+  when: inventory_hostname == groups['all'][-1] # Only execute on the last host to move the file
