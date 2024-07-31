@@ -1,7 +1,5 @@
 # passgen
 
-# Ansible Playbook for Changing Root Passwords and Storing Them
-
 This Ansible playbook generates unique random passwords for the user of choice on multiple hosts, updates its password, and stores the generated passwords in a file on the Ansible control machine.
 
 ## Requirements
