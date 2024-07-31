@@ -1,7 +1,7 @@
 ---
 - name: Change host passwords with random generated passwords
   hosts:
-    - knodes
+    - hosts
   become: true
   gather_facts: true
   vars_files:
