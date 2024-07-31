@@ -6,9 +6,10 @@ This Ansible playbook generates unique random passwords for the user of choice o
 
 - Ansible installed on the control machine.
 - `passlib` library installed on the control machine. You can install it using pip:
-  ```sh
-  pip install passlib
-  ```
+
+```sh
+pip install passlib
+```
 
 ## Variables
 
