@@ -1,8 +1,8 @@
 # The user which you want to change its password
 username: "root"
 # Length of the password
-password_length: 12
+password_length: 16
 # Valid values include: ‘ascii_letters’, ‘ascii_lowercase’, ‘ascii_uppercase’, ‘digits’, ‘hexdigits’, ‘octdigits’, ‘printable’, ‘punctuation’ and ‘whitespace’.
-password_chars: "ascii_letters,digits"
+password_chars: "ascii_letters,digits,punctuation"
 # The file that contains all passwords in localhosts
 password_file: ~/pwd.txt
