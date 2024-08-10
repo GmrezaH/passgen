@@ -23,5 +23,5 @@ pip install passlib
 Create an inventory file named `hosts.ini` with the details of your hosts and run the playbook using the following command:
 
 ```sh
-ansible-playbook -i hosts.ini change_user_password.yml
+ansible-playbook -i hosts.ini passgen.yml
 ```
